@@ -34,7 +34,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/character/name',
         builder: (context, state) => CharacterNamingScreen(
-          selectedClass: state.uri.queryParameters['class'] ?? 'Caballero',
+          selectedClassCode: state.uri.queryParameters['classCode'] ?? 'knight',
+          selectedClassName: state.uri.queryParameters['className'] ?? 'Caballero',
         ),
       ),
       GoRoute(path: '/hub', builder: (context, state) => const HubSanctuaryScreen()),

@@ -28,10 +28,10 @@ class CharacterRepository {
     return CharacterModel.fromMap(row, worldProgress: worldProgress);
   }
 
-  Future<CharacterModel> createCharacter({required String name, required String className}) async {
+  Future<CharacterModel> createCharacter({required String name, required String classCode}) async {
     await _client.rpc('create_character_mvp', params: {
       'p_name': name,
-      'p_class': className,
+      'p_class': classCode,
     });
 
     final character = await fetchActiveCharacter();

@@ -7,9 +7,14 @@ import '../../../shared/widgets/loading_error_view.dart';
 import '../domain/character_controller.dart';
 
 class CharacterNamingScreen extends ConsumerStatefulWidget {
-  const CharacterNamingScreen({required this.selectedClass, super.key});
+  const CharacterNamingScreen({
+    required this.selectedClassName,
+    required this.selectedClassCode,
+    super.key,
+  });
 
-  final String selectedClass;
+  final String selectedClassName;
+  final String selectedClassCode;
 
   @override
   ConsumerState<CharacterNamingScreen> createState() => _CharacterNamingScreenState();
@@ -44,7 +49,7 @@ class _CharacterNamingScreenState extends ConsumerState<CharacterNamingScreen> {
 
     final character = await ref.read(characterControllerProvider.notifier).createCharacter(
           name: _nameCtrl.text.trim(),
-          className: widget.selectedClass,
+          classCode: widget.selectedClassCode,
         );
 
     if (character != null && mounted) {
@@ -64,7 +69,7 @@ class _CharacterNamingScreenState extends ConsumerState<CharacterNamingScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Clase elegida: ${widget.selectedClass}'),
+            Text('Clase elegida: ${widget.selectedClassName}'),
             const SizedBox(height: 12),
             TextField(
               controller: _nameCtrl,

@@ -40,10 +40,10 @@ class CharacterController extends StateNotifier<CharacterState> {
     return loadActiveCharacter();
   }
 
-  Future<CharacterModel?> createCharacter({required String name, required String className}) async {
+  Future<CharacterModel?> createCharacter({required String name, required String classCode}) async {
     state = state.copyWith(loading: true, error: null);
     try {
-      final character = await _repository.createCharacter(name: name, className: className);
+      final character = await _repository.createCharacter(name: name, classCode: classCode);
       state = state.copyWith(loading: false, character: character);
       return character;
     } catch (e) {
